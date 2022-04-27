@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { v5 as uuidv5 } from 'uuid';
+import uuid from 'react-uuid';
 
 export default function TodoFormModal({ setIsModalFormActive, addTodo }) {
     const [todo, setTodo] = useState({
@@ -9,29 +9,41 @@ export default function TodoFormModal({ setIsModalFormActive, addTodo }) {
         completed: false
     })
 
-    const [titleInputStyle, setTitleInputStyle] = useState('title');
-    const [descriptionInputStyle, descriptionTitleInputStyle] = useState('description');
+    const [titleInputStyle, setTitleInputStyle] = useState('title modal-input-border');
+    const [descriptionInputStyle, setDescriptionTitleInputStyle] = useState('description modal-input-border');
 
-    const onFormSubmit = e => {
-        // prevent refreshing
-        e.preventDefault();
-
-        // form validation
+    const addFormTodo = () => {
+        // data validation
         let hasError = false;
-        if (todo.title.trim() === '' && !titleInputStyle.includes('error')) {
-            setTitleInputStyle(`${titleInputStyle} error`);
+        if (todo.title.trim() === '') {
+            if (!titleInputStyle.includes('error')) {
+                setTitleInputStyle(`${titleInputStyle.replace('modal-input-border', 'error')}`);
+            }
             hasError = true;
         }
-
-        if (todo.description.trim() === '' && !descriptionInputStyle.includes('error')) {
-            descriptionTitleInputStyle(`${descriptionInputStyle} error`);
-            hasError = true;
+        else {
+            if (titleInputStyle.includes('error')) {
+                setTitleInputStyle(`${titleInputStyle.replace('error', 'modal-input-border')}`);
+            }
         }
 
+        if (todo.description.trim() === '') {
+            if (!descriptionInputStyle.includes('error')) {
+                setDescriptionTitleInputStyle(`${descriptionInputStyle.replace('modal-input-border', 'error')}`);
+            }
+            hasError = true;
+        }
+        else {
+            if (descriptionInputStyle.includes('error')) {
+                setDescriptionTitleInputStyle(`${descriptionInputStyle.replace('error', 'modal-input-border')}`);
+            }
+        }
+
+        // check if error(s) found
         if (hasError) return;
 
         // add todo
-        addTodo({ ...todo, id: uuidv5() });
+        addTodo({ ...todo, id: uuid() });
         setTodo({ ...todo, title: '', description: '' })
         setIsModalFormActive(false);
     }
@@ -46,13 +58,15 @@ export default function TodoFormModal({ setIsModalFormActive, addTodo }) {
 
     return (
         <div className='modal-body'>
-            <form className='todo-form-modal' onSubmit={onFormSubmit}>
+            <div className='todo-form-modal' >
+                <div className='close-box' onClick={() => setIsModalFormActive(false)}>
+                    <div>X</div>
+                </div>
                 <div className='label-container'>
                     <label className='label'>Title</label>
                 </div>
                 <input type='text'
                     className={titleInputStyle}
-                    defaultValue='Enter TODO title...'
                     value={todo.title}
                     onChange={onTitleTextChanged} />
 
@@ -61,12 +75,11 @@ export default function TodoFormModal({ setIsModalFormActive, addTodo }) {
                 </div>
                 <input type='text'
                     className={descriptionInputStyle}
-                    defaultValue='Enter TODO description...'
                     value={todo.description}
                     onChange={onDescriptionTextChanged} />
 
-                <button className='modal-add-btn' type='submit'>Submit</button>
-            </form>
+                <button className='modal-add-btn' onClick={addFormTodo}>Submit</button>
+            </div>
         </div>
     )
 }

@@ -12,20 +12,54 @@
     margin-top: 10px;
 }
 
-.modal-body {
-    width: 100%;
-    height: 500px;
-    padding: 0;
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.4);
+.todo-list {
+    width: 90%;
+    height: auto;
+    margin: auto;
+    margin-top: 50px;
 }
 
-.todo-form-modal {
+.todo {
     width: 100%;
+    height: 100px;
+    background-color: white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.todo+.todo {
+    margin-top: 20px;
+}
+
+.todo .title {
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.modal-body {
+    width: 99%;
+    height: 100%;
+    margin: auto;
+    padding: 0;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.0);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.todo-form-modal {
+    width: 350px;
+    height: 400px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 10px;
+    border-radius: 5px;
 }
 
 .label-container {
@@ -39,11 +73,15 @@
 .modal-body .title {
     width: 90%;
     margin-bottom: 20px;
+    border-radius: 3px;
 }
+
+
 
 .modal-body .description {
     width: 90%;
     height: 150px;
+    border-radius: 3px;
 }
 
 .modal-add-btn {
@@ -62,12 +100,42 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin-top: 25px;
 }
 
 .modal-add-btn:hover {
     background-color: rgb(19, 75, 194);
 }
 
+.modal-input-border {
+    border: 1px solid rgba(0, 0, 0, 0.35);
+}
+
 .error {
     border: 1px solid red;
+}
+
+.close-box {
+    width: 100%;
+    height: 40px;
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.close-box div {
+    width: 25px;
+    height: auto;
+    color: rgba(255, 0, 0, 0.8);
+    cursor: pointer;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.close-box div:hover {
+    background-color: red;
+    color: white;
 }

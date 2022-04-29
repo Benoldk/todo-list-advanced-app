@@ -17,6 +17,10 @@
     height: auto;
     margin: auto;
     margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .todo {

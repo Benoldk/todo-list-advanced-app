@@ -26,7 +26,8 @@ function App() {
   }
 
   const deleteTodo = id => {
-
+    setTodos(todos.filter(todo => { return todo.id !== id }));
+    localStorage.setItem(TODOS_LOCAL_STORAGE_KEY, JSON.stringify([todos]));
   }
 
   return (
@@ -34,7 +35,7 @@ function App() {
       {isModalFormActive && <TodoFormModal setIsModalFormActive={setIsModalFormActive} addTodo={addTodo} />}
       <Header />
       <AddButton setIsModalFormActive={setIsModalFormActive} />
-      <TodoList todos={todos} />
+      <TodoList todos={todos} editTodo={editTodo} deleteTodo={deleteTodo} />
     </div>
   );
 }

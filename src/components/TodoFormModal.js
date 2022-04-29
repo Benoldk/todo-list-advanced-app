@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import uuid from 'react-uuid';
 import '../stylesheets/todo.css'
 
-export default function TodoFormModal({ setIsModalFormActive, addTodo }) {
+export default function TodoFormModal({ setIsModalFormActive, addTodo, curTodo }) {
     const [todo, setTodo] = useState({
         id: '',
         title: '',
         description: '',
         completed: false
     })
+
+    useEffect(() => {
+        if (curTodo !== null) {
+            setTodo(curTodo);
+        }
+    }, [curTodo])
 
     const [titleInputStyle, setTitleInputStyle] = useState('title modal-input-border');
     const [descriptionInputStyle, setDescriptionTitleInputStyle] = useState('description modal-input-border');
@@ -44,7 +50,11 @@ export default function TodoFormModal({ setIsModalFormActive, addTodo }) {
         if (hasError) return;
 
         // add todo
-        addTodo({ ...todo, id: uuid() });
+        if (todo.id === null || todo.id.trim() === '')
+            addTodo({ ...todo, id: uuid() });
+        else
+            addTodo(todo);
+
         setTodo({ ...todo, title: '', description: '' })
         setIsModalFormActive(false);
     }
@@ -74,10 +84,6 @@ export default function TodoFormModal({ setIsModalFormActive, addTodo }) {
                 <div className='label-container'>
                     <label className='label'>Description</label>
                 </div>
-                {/* <input type='textarea'
-                    className={descriptionInputStyle}
-                    value={todo.description}
-                    onChange={onDescriptionTextChanged} /> */}
                 <textarea
                     className={descriptionInputStyle}
                     value={todo.description}

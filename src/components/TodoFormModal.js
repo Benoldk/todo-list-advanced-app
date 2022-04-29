@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import uuid from 'react-uuid';
+import '../stylesheets/todo.css'
 
 export default function TodoFormModal({ setIsModalFormActive, addTodo }) {
     const [todo, setTodo] = useState({
@@ -73,7 +74,11 @@ export default function TodoFormModal({ setIsModalFormActive, addTodo }) {
                 <div className='label-container'>
                     <label className='label'>Description</label>
                 </div>
-                <input type='text'
+                {/* <input type='textarea'
+                    className={descriptionInputStyle}
+                    value={todo.description}
+                    onChange={onDescriptionTextChanged} /> */}
+                <textarea
                     className={descriptionInputStyle}
                     value={todo.description}
                     onChange={onDescriptionTextChanged} />

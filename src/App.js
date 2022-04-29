@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Header from './components/Header'
 import TodoFormModal from './components/TodoFormModal'
 import TodoList from './components/TodoList'
+import AddButton from './components/AddButton'
 
 const TODOS_LOCAL_STORAGE_KEY = 'todos_local_storage_key';
 function App() {
@@ -23,7 +24,8 @@ function App() {
   return (
     <div className='App'>
       {isModalFormActive && <TodoFormModal setIsModalFormActive={setIsModalFormActive} addTodo={addTodo} />}
-      <Header setIsModalFormActive={setIsModalFormActive} />
+      <Header />
+      <AddButton setIsModalFormActive={setIsModalFormActive} />
       <TodoList todos={todos} />
     </div>
   );

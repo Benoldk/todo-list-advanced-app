@@ -21,6 +21,14 @@ function App() {
     localStorage.setItem(TODOS_LOCAL_STORAGE_KEY, JSON.stringify([...todos, todo]));
   }
 
+  const editTodo = id => {
+
+  }
+
+  const deleteTodo = id => {
+
+  }
+
   return (
     <div className='App'>
       {isModalFormActive && <TodoFormModal setIsModalFormActive={setIsModalFormActive} addTodo={addTodo} />}

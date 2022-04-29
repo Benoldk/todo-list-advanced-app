@@ -2,7 +2,7 @@
     width: 90%;
     height: 150px;
     margin: auto;
-    background-color: white;
+    color: #f1ece1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,55 +12,12 @@
 .header .title {
     width: 100%;
     height: 60%;
-    font-size: 40px;
+    font-size: 60px;
     font-weight: bold;
     text-align: center;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #f1ece1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.header .add-btn {
-    width: 150px;
-    height: 40px;
-    background-color: rgb(125, 196, 253);
-    text-align: center;
-    font-weight: bold;
-    font-size: 18px;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-top: 5px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.header .add-btn:hover {
-    background-color: rgb(70, 123, 236);
-}
-
-.header .add-btn .add-text {
-    margin-right: 5px;
-}
-
-.header .add-btn .plus {
-    border: 1px solid white;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.header .add-btn .plus span {
-    width: 100%;
-    height: 100%;
-    line-height: 15px;
 }
